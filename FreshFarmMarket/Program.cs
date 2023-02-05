@@ -30,14 +30,6 @@ builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
 
 builder.Services.AddDistributedMemoryCache();
 
-builder.Services.AddAuthentication().AddGoogle(googleOptions =>
-{
-    googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
-    googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
-	googleOptions.SignInScheme = IdentityConstants.ExternalScheme;
-
-});
-
 builder.Services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", options
 =>
 {

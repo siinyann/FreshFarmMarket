@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace FreshFarmMarket.Pages
 {
+    [Authorize]
     public class ChangePasswordModel : PageModel
     {
         
