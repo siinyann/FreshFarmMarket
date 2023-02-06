@@ -19,7 +19,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 	options.Password.RequireNonAlphanumeric = true;
 	options.Password.RequireDigit = true;
     options.Lockout.AllowedForNewUsers = true;
-    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(2);
     options.Lockout.MaxFailedAccessAttempts = 3;
 }).AddEntityFrameworkStores<AuthDbContext>().AddDefaultTokenProviders();
 

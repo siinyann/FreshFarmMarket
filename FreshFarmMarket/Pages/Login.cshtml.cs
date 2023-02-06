@@ -56,7 +56,7 @@ namespace FreshFarmMarket.Pages.Accounts
 
 				if(identityResult.IsLockedOut)
 				{
-                    ModelState.AddModelError("", "Your account is locked out.Kindly please wait for 5 minutes before attempting to login");
+                    ModelState.AddModelError("", "Your account is locked out.Kindly please wait for 2 minutes before attempting to login");
                 }
 				ModelState.AddModelError("", "Invalid Username or Password");
             }
