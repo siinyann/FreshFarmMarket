@@ -14,17 +14,34 @@ namespace FreshFarmMarket.Pages
         [BindProperty]
         public IFormFile? Upload { get; set; }
 
+        private UserManager<ApplicationUser> userManager;
+        private SignInManager<ApplicationUser> signInManager;
+
         [BindProperty]
         public Register RModel { get; set; }
 
-		private readonly ILogger<IndexModel> _logger;
-
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
-            _logger = logger;
+            this.userManager = userManager;
+            this.signInManager = signInManager;
         }
-        public void OnGet()
+
+		//private readonly ILogger<IndexModel> _logger;
+
+  //      public IndexModel(ILogger<IndexModel> logger)
+  //      {
+  //          _logger = logger;
+  //      }
+        public async Task OnGet()
         {
+            //var user = await userManager.GetUserAsync(User);
+            //RModel.FullName = user?.FullName;
+            //RModel.CreditCardNo = user?.CreditCardNo;
+            //RModel.Gender = user?.Gender;
+            //RModel.MobileNo = user?.MobileNo;
+            //RModel.DeliveryAddress = user?.DeliveryAddress;
+            //RModel.AboutMe = user?.AboutMe;
+            //RModel.Email = user?.Email;
         }
 
     }
