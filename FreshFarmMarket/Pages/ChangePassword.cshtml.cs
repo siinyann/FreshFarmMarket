@@ -35,10 +35,6 @@ namespace FreshFarmMarket.Pages
             if (ModelState.IsValid)
             {
                 var user = await userManager.GetUserAsync(User);
-                //if (user == null)
-                //{
-                //    return RedirectToPage("Index");
-                //}
 
                 // ChangePasswordAsync changes the user password
                 var result = await userManager.ChangePasswordAsync(user,
@@ -57,7 +53,6 @@ namespace FreshFarmMarket.Pages
                 {
                     ModelState.AddModelError("", error.Description);
                 }
-
 
             }
 

@@ -11,17 +11,19 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<AuthDbContext>();
 
+
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
-	options.Password.RequiredLength = 12;
-	options.Password.RequireLowercase = true;
-	options.Password.RequireUppercase = true;
-	options.Password.RequireNonAlphanumeric = true;
-	options.Password.RequireDigit = true;
+    options.Password.RequiredLength = 12;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireUppercase = true;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequireDigit = true;
     options.Lockout.AllowedForNewUsers = true;
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(2);
     options.Lockout.MaxFailedAccessAttempts = 3;
 }).AddEntityFrameworkStores<AuthDbContext>().AddDefaultTokenProviders();
+
 
 builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
 {
@@ -29,6 +31,13 @@ builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
 });
 
 builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddAuthentication().AddGoogle(googleOptions =>
+{
+    googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
+    googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+
+});
 
 builder.Services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", options
 =>
@@ -54,6 +63,8 @@ builder.Services.ConfigureApplicationCookie(Config =>
 
 builder.Services.AddApplicationInsightsTelemetry();
 
+builder.Services.AddDataProtection();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -72,6 +83,7 @@ app.UseStatusCodePagesWithRedirects("/Errors/{0}");
 app.UseRouting();
 
 app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapRazorPages();
